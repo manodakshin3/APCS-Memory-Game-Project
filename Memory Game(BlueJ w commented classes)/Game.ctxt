@@ -1,12 +1,14 @@
 #BlueJ class context
 comment0.target=Game
-comment0.text=\r\n\ Write\ a\ description\ of\ JavaFX\ class\ Game\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ A\ program\ that\ represents\ the\ GUI\ of\ a\ simple\ game\ based\ on\ the\ classic\ card\ game,\ memory.\r\n\ \r\n\r\n\ @author\ Darren\ Kwee\ and\ Mano\ Dakshin\r\n\ @version\ 1.0\r\n\ @since\ March\ 25,\ 2018\r\n
 comment1.params=stage
 comment1.target=void\ start(javafx.stage.Stage)
 comment2.params=
 comment2.target=void\ changeTurn()
+comment2.text=\r\n\ Changes\ which\ player\ is\ currently\ selecting.\r\n
 comment3.params=
 comment3.target=void\ score()
+comment3.text=\r\n\ Increases\ the\ score\ of\ whichever\ player's\ turn\ it\ is.\ \r\n
 comment4.params=args
 comment4.target=void\ main(java.lang.String[])
 numComments=5
