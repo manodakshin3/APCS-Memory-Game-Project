@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
@@ -24,7 +24,7 @@ import javafx.util.Duration;
 
 /**
  * A program that represents the GUI of a simple game based on the classic card game, memory.
- * 
+ * As of version 1.0, the game supports clicking on a card and having it flip over. If two consecutive selected cards don't match, they will fade away. If they do, they will remain. In a later version, it would have the player's individual scores displayed and have several GUI prompts, with new scenes to display messages such as "Player One's turn", etc. 
  *
  * @author Darren Kwee and Mano Dakshin
  * @version 1.0

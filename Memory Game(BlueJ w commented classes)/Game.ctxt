@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Game
-comment0.text=\r\n\ A\ program\ that\ represents\ the\ GUI\ of\ a\ simple\ game\ based\ on\ the\ classic\ card\ game,\ memory.\r\n\ \r\n\r\n\ @author\ Darren\ Kwee\ and\ Mano\ Dakshin\r\n\ @version\ 1.0\r\n\ @since\ March\ 25,\ 2018\r\n
+comment0.text=\r\n\ A\ program\ that\ represents\ the\ GUI\ of\ a\ simple\ game\ based\ on\ the\ classic\ card\ game,\ memory.\r\n\ As\ of\ version\ 1.0,\ the\ game\ supports\ clicking\ on\ a\ card\ and\ having\ it\ flip\ over.\ If\ two\ consecutive\ selected\ cards\ don't\ match,\ they\ will\ fade\ away.\ If\ they\ do,\ they\ will\ remain.\ In\ a\ later\ version,\ it\ would\ have\ the\ player's\ individual\ scores\ displayed\ and\ have\ several\ GUI\ prompts,\ with\ new\ scenes\ to\ display\ messages\ such\ as\ "Player\ One's\ turn",\ etc.\ \r\n\r\n\ @author\ Darren\ Kwee\ and\ Mano\ Dakshin\r\n\ @version\ 1.0\r\n\ @since\ March\ 25,\ 2018\r\n
 comment1.params=stage
 comment1.target=void\ start(javafx.stage.Stage)
 comment2.params=
