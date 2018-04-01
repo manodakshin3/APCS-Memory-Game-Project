@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Game
+comment0.text=\n\ A\ program\ that\ represents\ the\ GUI\ of\ a\ simple\ game\ based\ on\ the\ classic\ card\ game,\ memory.\n\ As\ of\ version\ 1.0,\ the\ game\ supports\ clicking\ on\ a\ card\ and\ having\ it\ flip\ over.\ If\ two\ consecutive\ selected\ cards\ don't\ match,\ they\ will\ fade\ away.\ If\ they\ do,\ they\ will\ remain.\ In\ a\ later\ version,\ it\ would\ have\ the\ player's\ individual\ scores\ displayed\ and\ have\ several\ GUI\ prompts,\ with\ new\ scenes\ to\ display\ messages\ such\ as\ "Player\ One's\ turn",\ etc.\n\ \n\ Here\ is\ the\ url\ for\ the\ picture\ used\ for\ the\ back\ of\ the\ cards\:\ https\://cdn.shopify.com/s/files/1/0200/7616/products/playing-cards-bicycle-rider-back-1_1024x1024.png?v\=1494193481\n\ @author\ Darren\ Kwee\ and\ Mano\ Dakshin\n\ @version\ 1.0\n\ @since\ March\ 25,\ 2018\n
+comment1.params=stage
+comment1.target=void\ start(javafx.stage.Stage)
+comment2.params=
+comment2.target=void\ changeTurn()
+comment2.text=\n\ Changes\ which\ player\ is\ currently\ selecting.\n
+comment3.params=
+comment3.target=void\ score()
+comment3.text=\n\ Increases\ the\ score\ of\ whichever\ player's\ turn\ it\ is.\ \n
+comment4.params=
+comment4.target=void\ hasWon()
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+numComments=6

@@ -1,16 +1,12 @@
-import java.util.Scanner;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
@@ -20,12 +16,15 @@ import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.animation.FadeTransition;
 import javafx.util.Duration;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 /**
  * A program that represents the GUI of a simple game based on the classic card game, memory.
- * As of version 1.0, the game supports clicking on a card and having it flip over. If two consecutive selected cards don't match, they will fade away. If they do, they will remain. In a later version, it would have the player's individual scores displayed and have several GUI prompts, with new scenes to display messages such as "Player One's turn", etc. 
- *
+ * As of version 1.0, the game supports clicking on a card and having it flip over. If two consecutive selected cards don't match, they will fade away. If they do, they will remain. In a later version, it would have the player's individual scores displayed and have several GUI prompts, with new scenes to display messages such as "Player One's turn", etc.
+ * 
+ * Here is the url for the picture used for the back of the cards: https://cdn.shopify.com/s/files/1/0200/7616/products/playing-cards-bicycle-rider-back-1_1024x1024.png?v=1494193481
  * @author Darren Kwee and Mano Dakshin
  * @version 1.0
  * @since March 25, 2018
@@ -36,6 +35,9 @@ public class Game extends Application
     private static int p1 = 0;
     private static int p2 = 0;
     private static boolean isP1;
+    private static DisplayDeck dd;
+    private static Deck d;
+    private static boolean hasWon;
     
     @Override  
     public void start(Stage stage) throws Exception
@@ -47,6 +49,10 @@ public class Game extends Application
         DisplayDeck dd = new DisplayDeck(d);
         
         GridPane gp = new GridPane();
+        
+        gp.setVgap(10.0);
+        gp.setHgap(10.0);
+        
         
         gp.add(d.getCardDeck()[0], 0,0,1,1);//maybe try and use some looping
         gp.add(d.getCardDeck()[1], 1,0,1,1);
@@ -65,12 +71,76 @@ public class Game extends Application
         gp.add(d.getCardDeck()[14], 2,3,1,1);
         gp.add(d.getCardDeck()[15], 3,3,1,1);
         
-        Scene s = new Scene(gp, 700, 900);
+        //don't use, currently just takes up the enitre screen
+        // Image backCard = new Image("card.png");//creates image for the cards
+        // gp.getChildren().add(new ImageView(backCard));
+        
+        
+        Label lp1 = new Label("Player One: ");//adds labels for score
+        gp.add(lp1, 4, 0, 10, 1);
+        
+        Label lp2 = new Label("Player Two: ");
+        gp.add(lp2, 4, 1, 10, 1);
+        
+        
+        Label scoreP1 = new Label(Integer.toString(p1));
+        Label scoreP2 = new Label(Integer.toString(p2));
+        gp.add(scoreP1, 12, 0, 10, 1);
+        gp.add(scoreP2, 12, 1, 10, 1);
+        
+        Scene s = new Scene(gp, 700, 700);
         stage.setScene(s);
         stage.show();
+        
+        
+        
+        
+        if (hasWon == true)//WIP, will determine if all the cards are flipped over, and if there is a winner, then change the scene to a message based on that. 
+        {
+            int howMany = 0;
+            for (Card[] temp : dd.getCard())
+            {
+                for (Card c : temp)
+                {
+                    if (c.isOpen == true)
+                    {
+                        howMany++;
+                    }
+                }
+            }
+        
+            if (howMany == 16)
+            {
+                if (p1 > p2)
+                {
+                    Label a = new Label("player one wins  yay");
+                    Scene p1 = new Scene(a,100, 100);
+                    stage.setScene(p1);
+                    stage.show();
+                }
+                else
+                {
+                if (p1 == p2)
+                {
+                Label b = new Label("tie boo hoo");
+                Scene tie = new Scene(b, 100, 100);
+                stage.setScene(tie);
+                stage.show();
+                }
+                else
+                {
+                Label c = new Label("player two wins yay");
+                Scene p2 = new Scene(c, 100, 100);
+                stage.setScene(p2);
+                stage.show();
+            }
+            }
+            
+        
+            }
 
-    }
-    
+            }
+        } 
     /**
      * A class that represents a single card object, which extends StackPane for the purpose of inheriting the ability to be "added" to a layout in JavaFX.
      * Currently, the suit field has no effect. 
@@ -81,6 +151,7 @@ public class Game extends Application
         private int num;
         private Card c;
         Text t = new Text();
+        private boolean isOpen;
         
         /**
          * The default constructor, used for testing purposes.
@@ -128,7 +199,7 @@ public class Game extends Application
                 {
                     current = this;
                     current.flipOpen();
-                    // current.fadeOpen();
+                    
                 }
                 else
                 {
@@ -145,6 +216,7 @@ public class Game extends Application
                         this.flipOpen();
                         current = null;
                         score();
+                        System.out.println("Score Test");
                         changeTurn();
                     }
                     current = null;
@@ -158,6 +230,7 @@ public class Game extends Application
         public void flipOpen()
         {
             t.setOpacity(1);
+            this.isOpen = true;
         }
             
         /**
@@ -165,10 +238,11 @@ public class Game extends Application
          */
         public void flipClose()
         {
-            //t.setOpacity(0);
-            FadeTransition transition = new FadeTransition(Duration.seconds(0.5), t);
+           //t.setOpacity(0);
+           FadeTransition transition = new FadeTransition(Duration.seconds(0.5), t);
            transition.setToValue(0);
            transition.play();//needs to fade in order to be visible
+           this.isOpen = false;
         }
         
         /**
@@ -368,6 +442,47 @@ public class Game extends Application
         {
             p2++;
         }
+    }
+    
+    public static void hasWon()//need to finish
+    {
+        hasWon = true;
+        // int howMany = 0;
+        // for (Card[] d : dd.getCard())
+        // {
+            // for (Card c : d)
+            // {
+                // if (c.isOpen == true)
+                // {
+                    // howMany++;
+                // }
+            // }
+        // }
+        
+        // if (howMany == 16)
+        // {
+            // if (p1 > p2)
+            // {
+                // Label a = new Label("player one wins  yay");
+                // Scene p1 = new Scene(a,100, 100);
+                // // stage.setScene(p1);
+                // // stage.show();
+            // }
+            // else
+            // {
+                // if (p1 == p2)
+                // {
+                // Label b = new Label("tie boo hoo");
+                // Scene tie = new Scene(b, 100, 100);
+                // }
+                // else
+                // {
+                // Label c = new Label("player two wins yay");
+                // Scene p2 = new Scene(c, 100, 100);
+            // }
+            // }
+            
+        // }
     }
     
     public static void main(String[] args)
